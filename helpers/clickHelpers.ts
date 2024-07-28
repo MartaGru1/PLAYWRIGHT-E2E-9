@@ -1,4 +1,4 @@
-import { Page } from "@playwright/test";
+import { Page } from '@playwright/test'
 
 /**
  * Method to click on the button depending on its visible text.

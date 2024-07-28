@@ -1,16 +1,16 @@
-import {test, expect} from "@playwright/test";
-import { clickButton, clickLink } from "../../helpers/clickHelpers";
+import {test, expect} from '@playwright/test'
+import { clickButton, clickLink } from '../../helpers/clickHelpers'
 import fs from 'fs'
-import path from "path";
+import path from 'path'
 
-test.describe("Download & Upload", () => {
+test.describe('Download & Upload', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("https://techglobal-training.com/frontend");
+    await page.goto('https://techglobal-training.com/frontend')
 
-    await clickLink(page, "File Download & Upload");
-  });
+    await clickLink(page, 'File Download & Upload')
+  })
 
-  test("download a File", async ({ page }) => {
+  test('download a File', async ({ page }) => {
 
     const [download] = await Promise.all([
       page.waitForEvent('download'),
@@ -36,7 +36,7 @@ test.describe("Download & Upload", () => {
     console.log(isDownloaded)
 
     expect(isDownloaded, { message: 'Test is FAILED'}).toBeTruthy()
-  });
+  })
 
   test('Upload a file', async({ page }) => {
     const uploadLink = page.locator('#file_upload')
@@ -53,11 +53,4 @@ test.describe("Download & Upload", () => {
 
     await expect(result).toHaveText(`You uploaded ${uploadPath.slice(uploadPath.lastIndexOf('/') +1)}`)
   })
-});
-
-
-
-
-
-
-
+})

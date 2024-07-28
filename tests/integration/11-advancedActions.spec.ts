@@ -1,89 +1,56 @@
-import { test, expect } from "@playwright/test";
-import { clickButton, clickLink } from "../../helpers/clickHelpers";
+import { test, expect } from '@playwright/test'
+import { clickLink } from '../../helpers/clickHelpers'
 
-test.describe("Dialogs", () => {
+test.describe('Advanced user Actions', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("https://techglobal-training.com/frontend");
+    await page.goto('https://techglobal-training.com/frontend')
 
-    await clickLink(page, "Alerts");
-  });
+    await clickLink(page, 'Actions')
+  })
 
-  test("Handing Dialogs", async ({ page }) => {
-    // await clickButton(page, "Confirmation alert");
-    // await clickButton(page, "Prompt alert");
+  test('Mouse Actions', async ({ page }) => {
+    // await page.click('#locator')
 
-    // page.on("dialog", async (dialog) => {
-    //   const type = dialog.type();
-    //   const message = dialog.message();
+    // Right-clicks the element
+    await page.click('#right-click', { button: 'right' })
 
-    //   await dialog.accept();
+    // Double-clicks the element
+    await page.dblclick('#double-click')
 
-    //   console.log(type + " MESSAGE 1");
-    //   console.log(message + " MESSAGE 2");
-    // });
+    // Drag and drop the element
+    await page.dragAndDrop('#drag_element', '#drop_element')
+  })
 
-    // await clickButton(page, "Warning alert");
+  test('Keyboard Actions', async ({ page }) => {
+    const inputBox = page.locator('#input_box')
 
-    // await page.pause()
+    await inputBox.focus()
 
+    // await page.keyboard.down('Shift')
+    // await page.keyboard.press('KeyA+KeyB+KeyC')
+    // await page.keyboard.press('KeyA+KeyB+KeyC')
+    // await page.keyboard.up('Shift')
 
-    // page.on("dialog", async (dialog) => {
-    //   const type = dialog.type();
-    //   const message = dialog.message();
+    // await page.keyboard.press('Shift+KeyA+KeyB+KeyC')
+    // await page.keyboard.press('ArrowLeft')
+    // await page.keyboard.press('KeyA+KeyB+KeyC')
+    // await page.keyboard.press('Backspace')
 
-    //   await dialog.dismiss();
+    // Hello World!
+    await page.keyboard.type('Hello World!')
+    await page.keyboard.press('ArrowLeft')
 
-    //   console.log(type + " MESSAGE 1");
-    //   console.log(message + " MESSAGE 2");
-    // });
+    await page.keyboard.down('Shift')
 
-    // await clickButton(page, "Confirmation alert");
+    for (let i = 0; i < 'World'.length; i++) {
+      await page.keyboard.press('ArrowLeft')
+    }
 
-    // await page.pause()
+    await page.keyboard.up('Shift')
+    await page.keyboard.type('Class')
 
-    // page.on("dialog", async (dialog) => {
-    //   const type = dialog.type();
-    //   const message = dialog.message();
-
-    //   if (type === "alert") {
-    //     await dialog.accept();
-    //   } else if (type === "confirm") {
-    //     await dialog.dismiss();
-    //   } else {
-    //     await dialog.accept("My Message");
-    //   }
-
-    //   console.log(message);
-    // });
-
-    // await clickButton(page, "Warning alert");
-    // await clickButton(page, "Confirmation alert");
-    // await clickButton(page, "Prompt alert");
-
-    page.once("dialog", async (dialog) => {
-      await dialog.accept()
-      const message = dialog.message();
-
-      console.log(message + ' THIS IS THE FIRST DIALOG');
-    });
-
-    await clickButton(page, "Warning alert");
-
-    page.once("dialog", async (dialog) => {
-      await dialog.dismiss()
-      const message = dialog.message();
-
-      console.log(message + ' THIS IS THE SECOND DIALOG');
-    });
-
-    await clickButton(page, "Confirmation alert");
-
-    page.once("dialog", async (dialog) => {
-      await dialog.accept('My Message')
-
-      console.log(dialog.message() + ' THIS IS THE THIRD DIALOG');
-    });
-
-    await clickButton(page, "Prompt alert");
-  });
-});
+    // Note for MAC users but using Windows CI/CD
+    await page.keyboard.press(process.env.CI ? 'Control' : 'Meta')
+    await page.keyboard.press('ControlOrMeta')
+  })
+})
