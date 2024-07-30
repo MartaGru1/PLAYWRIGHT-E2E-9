@@ -1,12 +1,12 @@
-import { test, expect } from "@playwright/test";
-import { clickLink } from "../../helpers/clickHelpers";
+import { test, expect } from '@playwright/test'
+import { clickLink } from '../../helpers/clickHelpers'
 
-test.describe("Annotations", () => {
+test.describe('Annotations', () => {
   test.beforeEach(async ({ page }) => {
-    await page.goto("https://techglobal-training.com/frontend");
+    await page.goto('https://techglobal-training.com/frontend')
 
-    await clickLink(page, "HTML Elements");
-  });
+    await clickLink(page, 'HTML Elements')
+  })
 
   // test.fail("Annotations - fail", async ({ page }) => {
   //   // test.fail();
@@ -40,7 +40,7 @@ test.describe("Annotations", () => {
    * 6. Validate their id and value
    */
 
-  test("Annotations - step", { tag: ['@smoke', '@regression'] }, async ({ page }, testInfo) => {
+  test('Annotations - step', { tag: ['@smoke', '@regression'] }, async ({ page }, testInfo) => {
 
     // console.log(testInfo.title)
     // console.log(testInfo.error?.message)
@@ -50,21 +50,21 @@ test.describe("Annotations", () => {
     const expectedTexts = ['Hello World!', 'I like automation testing!']
 
     await test.step('1. Go to "https://techglobal-training.com/frontend"', async () => {
-      await page.goto("https://techglobal-training.com/frontend");
-    });
+      await page.goto('https://techglobal-training.com/frontend')
+    })
 
     await test.step('2. Click on the "Html Elements" card', async () => {
-      await clickLink(page, "HTML Elements");
-    });
+      await clickLink(page, 'HTML Elements')
+    })
 
     await test.step('3. Validate Hello World and I Like automation testing! texts are visible', async () => {
       for(const paragraph of paragraphsAll) {
         await expect(paragraph).toBeVisible()
       }
-    });
+    })
 
     await test.step('5. Validate their texts are equal to expected texts', async () => {
       await expect(paragraphs).toHaveText(expectedTexts)
-    });
-  });
-});
+    })
+  })
+})

@@ -1,13 +1,13 @@
-import test from "@playwright/test";
-import { clickButton, clickLink } from "../../helpers/clickHelpers";
+import test from '@playwright/test'
+import { clickButton, clickLink } from '../../helpers/clickHelpers'
 
 test.describe('User Actions', () => {
 
   test.beforeEach(async ({ page }) => {
-    await page.goto("https://techglobal-training.com/frontend");
+    await page.goto('https://techglobal-training.com/frontend')
 
-    await clickLink(page, "HTML Elements");
-  });
+    await clickLink(page, 'HTML Elements')
+  })
 
   test('User Actions - Click and Hover', async({ page }) => {
 

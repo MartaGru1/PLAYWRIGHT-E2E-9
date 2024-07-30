@@ -1,4 +1,4 @@
-import { test, expect, Locator } from "@playwright/test";
+import { test, expect, Locator } from '@playwright/test'
 
 // test.use({
 //   launchOptions: {
@@ -6,10 +6,10 @@ import { test, expect, Locator } from "@playwright/test";
 //   }
 // })
 
-test.describe("Playwright Locators", () => {
+test.describe('Playwright Locators', () => {
 
-  test("Playwright locator() API", async ({ page }) => {
-    await page.goto("https://techglobal-training.com/");
+  test('Playwright locator() API', async ({ page }) => {
+    await page.goto('https://techglobal-training.com/')
 
     // await page.click('#myLocator')
 
@@ -24,10 +24,10 @@ test.describe("Playwright Locators", () => {
     await page.click('#logo')
 
     const myLogo = page.locator('#logo')
-  });
+  })
 
-  test("Playwright - Custom Pseudo Classes", async ({ page }) => {
-    await page.goto("https://techglobal-training.com/frontend");
+  test('Playwright - Custom Pseudo Classes', async ({ page }) => {
+    await page.goto('https://techglobal-training.com/frontend')
 
     const cards = page.locator('.card')
 
@@ -51,11 +51,11 @@ test.describe("Playwright Locators", () => {
     const noJavaParentDiv = page.locator('#radio-button-group > div', { hasNot: javaRadioButton })
 
     console.log(await noJavaParentDiv.count() + ' is the real amount we need')
-  });
+  })
 
   test('Playwright - Chaining the Locators', async({ page }) => {
 
-    await page.goto("https://techglobal-training.com/frontend");
+    await page.goto('https://techglobal-training.com/frontend')
     await page.locator('a:has-text("HTML Elements")').click()
 
     const unorderedList = page.locator('#unordered_list')
@@ -65,7 +65,7 @@ test.describe("Playwright Locators", () => {
 
   test('Playwright - Handling multiple elements', async({ page }) => {
 
-    await page.goto("https://techglobal-training.com/frontend");
+    await page.goto('https://techglobal-training.com/frontend')
     await page.locator('a:has-text("HTML Elements")').click()
 
     const unorderedList = page.locator('#unordered_list > li')
@@ -96,7 +96,7 @@ test.describe("Playwright Locators", () => {
   })
 
   test('Playwright - Built-in locators', async({ page }) => {
-    await page.goto("https://techglobal-training.com/frontend");
+    await page.goto('https://techglobal-training.com/frontend')
 
     await page.getByRole('link', { name: 'HTML Elements'}).click()
 
@@ -133,4 +133,4 @@ test.describe("Playwright Locators", () => {
 
     console.log(`Locaterd wrapper is: ${uniqueWrapper}`)
   })
-});
+})

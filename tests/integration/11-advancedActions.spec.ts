@@ -52,5 +52,5 @@ test.describe('Advanced user Actions', () => {
     // Note for MAC users but using Windows CI/CD
     await page.keyboard.press(process.env.CI ? 'Control' : 'Meta')
     await page.keyboard.press('ControlOrMeta')
-  })
+  });
 })
